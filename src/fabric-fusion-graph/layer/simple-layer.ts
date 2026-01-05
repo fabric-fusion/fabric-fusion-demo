@@ -1,4 +1,4 @@
-import { fabric } from "@fabric-fusion/core";
+import { FabricObject, Circle } from "fabric";
 
 /**
  * @description 生成炮孔 Fabric.js 对象列表，每个元素是独立的 `fabric.Group`
@@ -14,7 +14,7 @@ export const generateObjects = (
     onClick?: (data: any) => void;
     onHover?: (data: any) => void;
   } = {}
-): fabric.Object[] => {
+): FabricObject[] => {
   // 默认参数
   const config = {
     fill: "#000000",
@@ -24,13 +24,13 @@ export const generateObjects = (
   };
 
   // 普通数组存储每个 `fabric.Group`，确保它们是独立对象
-  const fabricObjects: fabric.Object[] = [];
+  const fabricObjects: FabricObject[] = [];
 
   ///绘制图形///
   const count = 2;
 
   for (let i = 0; i < count; i++) {
-    const circle = new fabric.Circle({
+    const circle = new Circle({
       radius: config.radius,
       fill: config.fill,
       stroke: config.stroke,

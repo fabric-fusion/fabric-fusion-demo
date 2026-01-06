@@ -448,9 +448,9 @@ const clearCanvasContent = () => {
   mainRender.clear();
 };
 
-const disposeCanvasInstance = () => {
+const disposeCanvasInstance = async () => {
   mainRender.canvas.off();
-  mainRender.dispose();
+  await mainRender.dispose();
 };
 /** 当前画布触发更新的 UUID */
 const canvasTriggerUUID = computed(() => {
@@ -486,9 +486,9 @@ onMounted(() => {
   clearCanvasContent();
 });
 
-onUnmounted(() => {
+onUnmounted(async () => {
   graphFusionStore.removeCanvasByName(editorCanvasConfig.name);
-  disposeCanvasInstance();
+  await disposeCanvasInstance();
   window.removeEventListener("resize", () =>
     updateCanvasState("update", "size")
   );
